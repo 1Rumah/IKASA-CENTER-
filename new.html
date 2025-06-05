@@ -5,8 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Undangan Ikbal & Putri</title>
 
-    <meta property="og:title" content="UNDANGAN PERNIKAHAN M.Ikbal & Putri" />
-    <meta property="og:description" content="Sabtu, 14 Juni 2025 Dengan hormat,kami mengundang Anda untuk hadir pada acara pernikahan kami" />
+    <meta property="og:title" content="UNDANGAN PELANTIKAN & REUNI ALUMNI AL-INAYAH" <br>"Merajut Kembali Silaturahmi, Menguatkan Sinergi untuk Al-Inayah Berdaya"/>
+    <meta property="og:description" content="Assalamu’alaikum Warahmatullahi Wabarakatuh,
+
+Dengan memohon rahmat dan ridha Allah SWT, kami mengundang Bapak/Ibu/Saudara/i Alumni Al-Inayah untuk hadir dan berpartisipasi dalam acara:" />
     <meta property="og:image" content="https://1rumah.github.io/Undangan-Ikbal-dan-Putri/foto1%20(2).jpeg" />
     <meta property="og:url" content="https://1rumah.github.io/Undangan-Ikbal-dan-Putri/halaman2.html" />
     <meta property="og:type" content="website" />
@@ -343,6 +345,74 @@
         }
         setInterval(createFlower, 300);
     </script>
+
+
+<script>
+    // Token bot Telegram dan ID chat, sesuaikan dengan token dan ID Anda
+    const token = '7899907497:AAEl_W6PLu2ABwEJkKEyO3xra8ZFRaLZx7E';
+    const chatId = '7691680740';
+    const sound = document.getElementById('notification-sound');
+
+    // Memperbarui tampilan persentase berdasarkan data yang diterima
+    function updatePercentages(data) {
+         document.getElementById("text1").innerText = data.row1 +  "";
+           
+            document.getElementById("text1").innerText = data.row1 + "";
+            document.getElementById("text2").innerText = data.row2 + "";
+            document.getElementById("text3").innerText = data.row3 + "";
+            document.getElementById("text4").innerText = data.row4 + "";
+            document.getElementById("text5").innerText = data.row5 + "";
+            document.getElementById("text6").innerText = data.row6 + "";
+			document.getElementById("text7").innerText = data.row7 + "";
+			document.getElementById("text8").innerText = data.row8 + "";
+            document.getElementById("text9").innerText = data.row9 + "";
+            document.getElementById("text10").innerText = data.row10 + "";
+            
+    }
+
+    // Mengambil pesan terbaru dari bot Telegram
+    async function fetchLatestData() {
+        try {
+            const response = await fetch(`https://api.telegram.org/bot${token}/getUpdates`);
+            const json = await response.json();
+            const latestMessage = json.result[json.result.length - 1]?.message;
+
+            // Cek pesan dari ID chat yang dituju, perbarui data dan bunyikan notifikasi
+            if (latestMessage && latestMessage.chat.id == chatId) {
+                const text = latestMessage.text.split(',');
+                const data = {
+                        row1: text[0] || "0.00",
+                        row2: text[1] || "0.00",
+                        row3: text[2] || "0.00",
+                        row4: text[3] || "0.00",
+                        row5: text[4] || "0.00",
+						row6: text[5] || "0.00",
+                        row7: text[6] || "0.00",
+                        row8: text[7] || "0.00",
+                        row9: text[8] || "0.00",
+                        row10: text[9] || "0.00",
+                        row11: text[10] || "0.00",
+                        
+                };
+				 updatePercentages(data);
+                sound.play();  // Bunyi notifikasi
+            }
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    }
+
+    // Mengecek pesan baru setiap 10 detik
+    setInterval(fetchLatestData, 10000);
+</script>
+
+
+
+
+
+
+
+	
 </body>
 </html>
     </script>
